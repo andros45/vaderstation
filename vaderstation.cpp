@@ -10,11 +10,19 @@ class Stad {
         int temp;
 
         // Constructormetod till klassen
-        Stad() {
-            
+        Stad(string x, int y) {
+            namn = x;
+            temp = y;
         }
 
-        // string ToString()
+        // Metod för att returnera en sträng med bägge värden från ett objekt
+        string ToString(string x, int y) {
+            string tempString, tempStringg;
+
+            tempString = (x + " " + to_string(y));
+
+            return (tempString);
+        }
 
         //int linsok(fält städer, int n, int söktemp)
 
@@ -28,17 +36,22 @@ class Stad {
 
 int main() {
 
-    Stad minStad;
+    string inputNamn;
+    int inputTemp;
 
-    minStad stader[4];
+    
 
-    cout << "Ange namn på stad nr 1: ";
-    cin >> minStad.namn;
+    cout << "\n\nAnge namn på stad nr 1: ";
+    cin >> inputNamn;
 
-    cout << "Ange temperatur i " << minStad.namn << ": ";
-    cin >> minStad.temp;
+    cout << "\n\nAnge temperatur i " << inputNamn << ": ";
+    cin >> inputTemp;
 
-    cout << "I staden " << minStad.namn << " är det " << minStad.temp << " grader varmt.\n";
+    Stad stad1(inputNamn, inputTemp);
+
+    // Stad stader[4];
+
+    cout << "\n\nI staden " << stad1.namn << " är det " << stad1.temp << " grader varmt.\n";
 
     return 0;
 }
