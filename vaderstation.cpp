@@ -25,7 +25,14 @@ class Stad {
         }
 
         //TODO
-        //int linsok(fält städer, int n, int söktemp)
+        int linsok(Stad stader, int n, int sokTemp) {
+            for(int i=0; i < n; i++) {
+                if (sokTemp = temp) {
+                    return n;
+                }
+            }
+            return -1;
+        } 
 
         //TODO
         // void bubblesort(fält städer, int n)
@@ -42,7 +49,9 @@ int main() {
 
     // Variabler för att lagra användarens inmatningar
     string inputNamn;
-    int inputTemp;
+    int inputTemp, sokTemperatur;
+
+    int sokRes;
 
     // Variabel för att användas i while-loopen där temperatur kontrolleras
     bool tempNotOk = true;
