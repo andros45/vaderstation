@@ -24,8 +24,12 @@ class Stad {
             temp = t;
         }
 
+<<<<<<< Updated upstream
         //TODO
         //int linsok(fält städer, int n, int söktemp)
+=======
+};
+>>>>>>> Stashed changes
 
         //TODO
         // void bubblesort(fält städer, int n)
@@ -77,11 +81,78 @@ int main() {
     // Skriv ut två blankrader
     cout << "\n\n";
 
+<<<<<<< Updated upstream
     // Skriv ut alla objekt som finns i arrayen
     for(int i=0; i < 4; i++) {
         cout << "stader[" << i << "].toString(): " << stader[i].toString() << "\n";
     }
     
+=======
+    // Skriv ut alla objekt som finns i arrayen innan bubblesort
+    cout << "\nInnan bubblesort...\n";
+    for(int i=0; i < 4; i++) {
+        cout << "\nstader[" << i << "].toString(): " << stader[i].toString() << "\n";
+    }
+    
+    // Sortera mha bubblesort
+    // TODO
+    // Detta ska också gällas i en egen metod där arrayen skickas med som parameter
+    // Skriv också en funktion/metod som sorterar ett Stad-fält efter temperatur (kallast först)
+     for(int i=0; i < 4; i++) {
+         for(int j=0; j < 4; j++) {
+             if (stader[j].getTemp() > stader[j+1].getTemp()) {
+                tempStad = stader[j].getNamn();
+                tempTemp = stader[j].getTemp();
+                stader[j].setValues(stader[j+1].getNamn(), stader[j+1].getTemp());
+                stader[j+1].setValues(tempStad, tempTemp);
+         }
+        
+        }
+    }
+
+    // Skriv ut alla objekt som finns i arrayen efter bubblesort
+    cout << "\nEfter bubblesort...\n";
+    for(int i=0; i < 4; i++) {
+        cout << "\nstader[" << i << "].toString(): " << stader[i].toString() << "\n";
+    }
+
+     // Be användaren ange vilken temperatur som ska sökas i arrayen med städer
+    cout << "\nVilken temperatur vill du söka efter? Ange värde: ";
+    cin >> sokTemperatur;
+
+
+    // TODO
+    // Den här funkar, men enligt uppgiften ska detta läggas i en separat metod
+    for(int i=0; i < 4; i++) {
+        if (stader[i].getTemp() == sokTemperatur) {
+            cout << "\nStaden " << stader[i].getNamn() << " har eftersökt temperatur (" << stader[i].getTemp() << ")\n";
+        }
+    }
+
+/*
+    OM mittersta värdet i fältet är lika med det sökta värdet
+        Värdet hittat
+    ANNARS OM vektorn består av endast ett element
+        Sökta värdet finns inte i fältet 
+    ANNARS OM sökta värdet är mindre än mittersta värdet
+        Sök i nedre halvan av fältet 
+    ANNARS
+        Sök i övre halvan av fältet
+*/
+
+    // Be användaren ange vilken temperatur som ska sökas i arrayen (binärsök) med städer
+    cout << "\nVilken temperatur vill du söka efter? (binärsök) Ange värde: ";
+    cin >> sokTemperatur;
+
+
+    // TODO
+    // Den här funkar, men enligt uppgiften ska detta läggas i en separat metod
+    for(int i=0; i < 4; i++) {
+        if (stader[i].getTemp() == sokTemperatur) {
+            cout << "\nStaden " << stader[i].getNamn() << " har eftersökt temperatur (" << stader[i].getTemp() << ")\n";
+        }
+    }
+>>>>>>> Stashed changes
 
     return 0;
 }
