@@ -17,6 +17,14 @@ class Stad {
             return (tempString);
         }
 
+        string getNamn() {
+            return namn;
+        }
+
+        int getTemp() {
+            return temp;
+        }
+
         // Metod för att sätta objektets värden (attribut) 
 
         void setValues(string s, int t) {
@@ -24,33 +32,39 @@ class Stad {
             temp = t;
         }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        //TODO
-        //int linsok(fält städer, int n, int söktemp)
-=======
-};
->>>>>>> Stashed changes
-=======
-};
->>>>>>> Stashed changes
-
-        //TODO
-        // void bubblesort(fält städer, int n)
-
-        //TODO
-        // hogstTemp
-
-        //TODO
-        // lagstTemp
-
 };
 
+        //TODO
+        // hogstTemp(fält städer, int n)
+
+        //TODO
+        // lagstTemp(fält städer, int n)
+
+// TODO
+// Den här används inte nu utan allt finns i main()
+int linsok(Stad stader[], int sokTemp, int n) {
+    // Kolla in den här:
+    // https://stackoverflow.com/questions/14466723/searching-through-an-array-of-class-objects-c
+
+        string tString1, tString2;
+
+        for(int i=0; i < n; i++) {    
+
+                if (sokTemp == stader[i].getTemp()) {
+                    cout << "gggggggggggggggggggggggggggggggggggg";
+                }
+        }
+
+}
+
+        
 int main() {
 
     // Variabler för att lagra användarens inmatningar
-    string inputNamn;
-    int inputTemp;
+    string inputNamn, tempStad;
+    int inputTemp, sokTemperatur, tempTemp;
+
+    int sokRes;
 
     // Variabel för att användas i while-loopen där temperatur kontrolleras
     bool tempNotOk = true;
@@ -58,6 +72,8 @@ int main() {
     // Skapa en array med plats för fyra objekt av typen Stad
     Stad stader[4];
 
+    int n = sizeof(stader);
+    
     // Loop för att få användaren att mata in de fyra städerna och
     // tillhörande temperaturer. Inmatad temperatur kontrolleras
     // så att inte gränsvärdena överskrids. (-60 till +60 grader)
@@ -85,16 +101,6 @@ int main() {
     // Skriv ut två blankrader
     cout << "\n\n";
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    // Skriv ut alla objekt som finns i arrayen
-    for(int i=0; i < 4; i++) {
-        cout << "stader[" << i << "].toString(): " << stader[i].toString() << "\n";
-    }
-    
-=======
-=======
->>>>>>> Stashed changes
     // Skriv ut alla objekt som finns i arrayen innan bubblesort
     cout << "\nInnan bubblesort...\n";
     for(int i=0; i < 4; i++) {
@@ -159,10 +165,36 @@ int main() {
             cout << "\nStaden " << stader[i].getNamn() << " har eftersökt temperatur (" << stader[i].getTemp() << ")\n";
         }
     }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+ 
+// A recursive binary search function. It returns
+// location of x in given array arr[l..r] is present,
+// otherwise -1
+int binarySearch(int arr[], int l, int r, int x)
+{
+	if (r >= l) {
+		int mid = l + (r - l) / 2;
+
+		// If the element is present at the middle
+		// itself
+		if (arr[mid] == x)
+			return mid;
+
+		// If element is smaller than mid, then
+		// it can only be present in left subarray
+		if (arr[mid] > x)
+			return binarySearch(arr, l, mid - 1, x);
+
+		// Else the element can only be present
+		// in right subarray
+		return binarySearch(arr, mid + 1, r, x);
+	}
+
+	// We reach here when element is not
+	// present in array
+	return -1;
+}
+
 
     return 0;
 }
