@@ -25,8 +25,12 @@ class Stad {
         }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         //TODO
         //int linsok(fält städer, int n, int söktemp)
+=======
+};
+>>>>>>> Stashed changes
 =======
 };
 >>>>>>> Stashed changes
@@ -82,12 +86,15 @@ int main() {
     cout << "\n\n";
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     // Skriv ut alla objekt som finns i arrayen
     for(int i=0; i < 4; i++) {
         cout << "stader[" << i << "].toString(): " << stader[i].toString() << "\n";
     }
     
 =======
+=======
+>>>>>>> Stashed changes
     // Skriv ut alla objekt som finns i arrayen innan bubblesort
     cout << "\nInnan bubblesort...\n";
     for(int i=0; i < 4; i++) {
@@ -152,6 +159,9 @@ int main() {
             cout << "\nStaden " << stader[i].getNamn() << " har eftersökt temperatur (" << stader[i].getTemp() << ")\n";
         }
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
     return 0;
