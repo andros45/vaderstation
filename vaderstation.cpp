@@ -66,6 +66,32 @@ void bubbleSort(Stad stader[], int n) {
     }
 }
 
+
+int binSok(Stad stader[], int v, int h, int sokTemp)
+{
+    
+	if (h >= v) {
+		int mitten = v + (h - v) / 2;
+
+        // Om värdet finns i mitten kan vi returnera det direkt
+		if (stader[mitten].getTemp() == sokTemp)
+			return mitten;
+
+        // Om värdet är mindre än mitten så kan det
+        // bara finnas i den vänstra delen av arrayen
+		if (stader[mitten].getTemp() > sokTemp) {
+			return binSok(stader, v, mitten - 1, sokTemp);
+        } else {
+            // Annars kan värdet bara finnas i den
+            // högra delen av arrayen
+            return binSok(stader, mitten + 1, h, sokTemp);
+        }
+	}
+
+    // Om vi inte hittar värdet i arrayen returneras -1
+	return -1;
+}
+
         
 int main() {
 
@@ -137,62 +163,17 @@ int main() {
         cout << "\nstader[" << i << "].toString(): " << stader[i].toString() << "\n";
     }
 
-
-
-/*
-    OM mittersta värdet i fältet är lika med det sökta värdet
-        Värdet hittat
-    ANNARS OM vektorn består av endast ett element
-        Sökta värdet finns inte i fältet 
-    ANNARS OM sökta värdet är mindre än mittersta värdet
-        Sök i nedre halvan av fältet 
-    ANNARS
-        Sök i övre halvan av fältet
-*/
-
-/*
     // Be användaren ange vilken temperatur som ska sökas i arrayen (binärsök) med städer
     cout << "\nVilken temperatur vill du söka efter? (binärsök) Ange värde: ";
     cin >> sokTemperatur;
 
+    sokRes = binSok(stader, 0, 4, sokTemperatur);
 
-    // TODO
-    // Den här funkar, men enligt uppgiften ska detta läggas i en separat metod
-    for(int i=0; i < 4; i++) {
-        if (stader[i].getTemp() == sokTemperatur) {
-            cout << "\nStaden " << stader[i].getNamn() << " har eftersökt temperatur (" << stader[i].getTemp() << ")\n";
-        }
+    if (sokRes == -1) {
+        cout << "\nKunde tyvärr inte hitta någon stad med temperaturen " << sokTemperatur << " grader. (binärsökning)\n";
+    } else {
+        cout << "\nStaden " << stader[sokRes].getNamn() << " har eftersökt temperatur på " << stader[sokRes].getTemp() << " grader. (binärsökning)\n";
     }
 
-
-// A recursive binary search function. It returns
-// location of x in given array arr[l..r] is present,
-// otherwise -1
-int binarySearch(int arr[], int l, int r, int x)
-{
-	if (r >= l) {
-		int mid = l + (r - l) / 2;
-
-		// If the element is present at the middle
-		// itself
-		if (arr[mid] == x)
-			return mid;
-
-		// If element is smaller than mid, then
-		// it can only be present in left subarray
-		if (arr[mid] > x)
-			return binarySearch(arr, l, mid - 1, x);
-
-		// Else the element can only be present
-		// in right subarray
-		return binarySearch(arr, mid + 1, r, x);
-	}
-
-	// We reach here when element is not
-	// present in array
-	return -1;
-}
-
-*/
     return 0;
 }
