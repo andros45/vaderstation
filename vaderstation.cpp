@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+// #include <string>
 
 using namespace std;
 
@@ -17,16 +17,17 @@ class Stad {
             return (tempString);
         }
 
+        // Metod för att hämta attributet 'namn'
         string getNamn() {
             return namn;
         }
 
+        // Metod för att hämta attributet 'temp'
         int getTemp() {
             return temp;
         }
 
         // Metod för att sätta objektets värden (attribut) 
-
         void setValues(string s, int t) {
             namn = s;
             temp = t;
@@ -40,21 +41,29 @@ class Stad {
         //TODO
         // lagstTemp(fält städer, int n)
 
-// TODO
-// Den här används inte nu utan allt finns i main()
+
 int linsok(Stad stader[], int sokTemp, int n) {
-    // Kolla in den här:
-    // https://stackoverflow.com/questions/14466723/searching-through-an-array-of-class-objects-c
-
-        string tString1, tString2;
-
-        for(int i=0; i < n; i++) {    
-
-                if (sokTemp == stader[i].getTemp()) {
-                    cout << "gggggggggggggggggggggggggggggggggggg";
-                }
+    for(int i=0; i < n; i++) {    
+        if (sokTemp == stader[i].getTemp()) {
+            return i;
         }
+    }
+    return -1;
+}
 
+void bubbleSort(Stad stader[], int n) {
+    string tempStad;
+    int tempTemp;
+    for(int i=0; i < n; i++) {
+         for(int j=0; j < n; j++) {
+             if (stader[j].getTemp() > stader[j+1].getTemp()) {
+                tempStad = stader[j].getNamn();
+                tempTemp = stader[j].getTemp();
+                stader[j].setValues(stader[j+1].getNamn(), stader[j+1].getTemp());
+                stader[j+1].setValues(tempStad, tempTemp);
+            }
+        }
+    }
 }
 
         
@@ -100,6 +109,18 @@ int main() {
     
     // Skriv ut två blankrader
     cout << "\n\n";
+    
+         // Be användaren ange vilken temperatur som ska sökas i arrayen med städer
+    cout << "\nVilken temperatur vill du söka efter? Ange värde: ";
+    cin >> sokTemperatur;
+
+    sokRes = linsok(stader, sokTemperatur, 4);
+
+    if (sokRes == -1) {
+        cout << "\nKunde tyvärr inte hitta någon stad med temperaturen " << sokTemperatur << " grader.";
+    } else {
+        cout << "\nStaden " << stader[sokRes].getNamn() << " har eftersökt temperatur på " << stader[sokRes].getTemp() << " grader.\n";
+    }
 
     // Skriv ut alla objekt som finns i arrayen innan bubblesort
     cout << "\nInnan bubblesort...\n";
@@ -107,21 +128,8 @@ int main() {
         cout << "\nstader[" << i << "].toString(): " << stader[i].toString() << "\n";
     }
     
-    // Sortera mha bubblesort
-    // TODO
-    // Detta ska också gällas i en egen metod där arrayen skickas med som parameter
-    // Skriv också en funktion/metod som sorterar ett Stad-fält efter temperatur (kallast först)
-     for(int i=0; i < 4; i++) {
-         for(int j=0; j < 4; j++) {
-             if (stader[j].getTemp() > stader[j+1].getTemp()) {
-                tempStad = stader[j].getNamn();
-                tempTemp = stader[j].getTemp();
-                stader[j].setValues(stader[j+1].getNamn(), stader[j+1].getTemp());
-                stader[j+1].setValues(tempStad, tempTemp);
-         }
-        
-        }
-    }
+    // Sortera arrayen genom att anropa funktionen bubblesort
+    bubbleSort(stader, 4);
 
     // Skriv ut alla objekt som finns i arrayen efter bubblesort
     cout << "\nEfter bubblesort...\n";
@@ -129,18 +137,7 @@ int main() {
         cout << "\nstader[" << i << "].toString(): " << stader[i].toString() << "\n";
     }
 
-     // Be användaren ange vilken temperatur som ska sökas i arrayen med städer
-    cout << "\nVilken temperatur vill du söka efter? Ange värde: ";
-    cin >> sokTemperatur;
 
-
-    // TODO
-    // Den här funkar, men enligt uppgiften ska detta läggas i en separat metod
-    for(int i=0; i < 4; i++) {
-        if (stader[i].getTemp() == sokTemperatur) {
-            cout << "\nStaden " << stader[i].getNamn() << " har eftersökt temperatur (" << stader[i].getTemp() << ")\n";
-        }
-    }
 
 /*
     OM mittersta värdet i fältet är lika med det sökta värdet
@@ -153,6 +150,7 @@ int main() {
         Sök i övre halvan av fältet
 */
 
+/*
     // Be användaren ange vilken temperatur som ska sökas i arrayen (binärsök) med städer
     cout << "\nVilken temperatur vill du söka efter? (binärsök) Ange värde: ";
     cin >> sokTemperatur;
@@ -166,7 +164,7 @@ int main() {
         }
     }
 
- 
+
 // A recursive binary search function. It returns
 // location of x in given array arr[l..r] is present,
 // otherwise -1
@@ -195,6 +193,6 @@ int binarySearch(int arr[], int l, int r, int x)
 	return -1;
 }
 
-
+*/
     return 0;
 }
