@@ -1,10 +1,12 @@
 #include <iostream>
-// #include <string>
 
 using namespace std;
 
 class Stad {
 
+    // Klassen innehåller två attribut
+    // namn innehåller stadens namn
+    // temp innehåller stadens temperatur
     string namn;
     int temp;
 
@@ -35,6 +37,8 @@ class Stad {
 
 };
 
+// Funktion för att hitta den högsta temperaturen i arrayen och
+// returnera indexnumret för den post som var högst
 int hogstTemp(Stad stader[], int n) {
     int index = 0;
     int hogst = stader[index].getTemp();
@@ -48,6 +52,8 @@ int hogstTemp(Stad stader[], int n) {
     return index;
 }
 
+// Funktion för att hitta den lägsta temperaturen i arrayen och
+// returnera indexnumret för den post som var lägst
 int lagstTemp(Stad stader[], int n) {
     int index = 0;
     int lagst = stader[index].getTemp();
@@ -61,7 +67,10 @@ int lagstTemp(Stad stader[], int n) {
     return index;
 }
 
-int linsok(Stad stader[], int sokTemp, int n) {
+// Funktion för att hitta en stad med en temperatur som
+// motsvarar eftersökt temperatur. Funktionen söker 
+// linjärt genom hela arrayen
+int linSok(Stad stader[], int sokTemp, int n) {
     for(int i=0; i < n; i++) {    
         if (sokTemp == stader[i].getTemp()) {
             return i;
@@ -70,6 +79,8 @@ int linsok(Stad stader[], int sokTemp, int n) {
     return -1;
 }
 
+// Funktion för att sortera hela arrayen med hjälp av
+// algoritmen bubblesort
 void bubbleSort(Stad stader[], int n) {
     string tempStad;
     int tempTemp;
@@ -85,10 +96,11 @@ void bubbleSort(Stad stader[], int n) {
     }
 }
 
-
+// Funktion för att hitta en stad med en temperatur som
+// motsvarar eftersökt temperatur. Funktionen söker 
+// binärt genom hela arrayen
 int binSok(Stad stader[], int v, int h, int sokTemp)
 {
-    
 	if (h >= v) {
 		int mitten = v + (h - v) / 2;
 
@@ -106,11 +118,9 @@ int binSok(Stad stader[], int v, int h, int sokTemp)
             return binSok(stader, mitten + 1, h, sokTemp);
         }
 	}
-
-    // Om vi inte hittar värdet i arrayen returneras -1
+    // Om värdet inte hittas i arrayen returneras -1
 	return -1;
 }
-
         
 int main() {
 
@@ -118,21 +128,28 @@ int main() {
     string inputNamn, tempStad;
     int inputTemp, sokTemperatur, tempTemp;
 
-
-
+    // Variabel för att lagra sökresultatet från sökfunktionerna
     int sokRes;
 
     // Variabel för att användas i while-loopen där temperatur kontrolleras
     bool tempNotOk = true;
 
-    // Skapa en array med plats för fyra objekt av typen Stad
-    Stad stader[4];
-
     // Antal element i arrayen
     int n = 4;
 
-    cout << "\n\n" << n << "\n\n";
+    // Skapa en array med plats för fyra objekt av typen Stad
+    Stad stader[n];
+
+    // Rensa skärmen
+    cout << "\033[2J\033[1;1H";
+    cout << "\n";
     
+    // Skriv ut ett välkomstmeddelande
+    cout << "Hej och välkommen till väderstationen!\n";
+    cout << "I det här programmet kommer du att få lägga in " << n << " städer med tillhörande temperaturer.\n";
+    cout << "Efter det kommer du att kunna söka efter städer med en specifik temperatur.\n";
+    cout << "Programmet avslutas med att skriva ut vilken stad som har den högsta respektive lägsta temperaturen.\n";
+
     // Loop för att få användaren att mata in de fyra städerna och
     // tillhörande temperaturer. Inmatad temperatur kontrolleras
     // så att inte gränsvärdena överskrids. (-60 till +60 grader)
@@ -160,50 +177,66 @@ int main() {
     // Skriv ut två blankrader
     cout << "\n\n";
     
-         // Be användaren ange vilken temperatur som ska sökas i arrayen med städer
-    cout << "\nVilken temperatur vill du söka efter? Ange värde: ";
+    // Be användaren ange vilken temperatur som ska sökas i arrayen med städer
+    cout << "\nVilken temperatur vill du söka efter med linjärsökning? Ange värde: ";
     cin >> sokTemperatur;
 
-    sokRes = linsok(stader, sokTemperatur, n);
+    // Ansopa funktionen linSok för att söka linjärt i arrayen om temperaturen finns där 
+    sokRes = linSok(stader, sokTemperatur, n);
 
+    // Visa resultatet av sökningen
     if (sokRes == -1) {
         cout << "\nKunde tyvärr inte hitta någon stad med temperaturen " << sokTemperatur << " grader.";
     } else {
         cout << "\nStaden " << stader[sokRes].getNamn() << " har eftersökt temperatur på " << stader[sokRes].getTemp() << " grader.\n";
     }
 
+// Avkommentera nedan om du vill se hur arayen ser ut osorterad
+/*
     // Skriv ut alla objekt som finns i arrayen innan bubblesort
     cout << "\nInnan bubblesort...\n";
     for(int i=0; i < n; i++) {
         cout << "\nstader[" << i << "].toString(): " << stader[i].toString() << "\n";
     }
-    
+*/  
     // Sortera arrayen genom att anropa funktionen bubblesort
     bubbleSort(stader, n);
 
+// Avkommentera nedan om du vill se hur arayen ser ut sorterad
+/*
     // Skriv ut alla objekt som finns i arrayen efter bubblesort
     cout << "\nEfter bubblesort...\n";
     for(int i=0; i < n; i++) {
         cout << "\nstader[" << i << "].toString(): " << stader[i].toString() << "\n";
     }
+*/
 
     // Be användaren ange vilken temperatur som ska sökas i arrayen (binärsök) med städer
-    cout << "\nVilken temperatur vill du söka efter? (binärsök) Ange värde: ";
+    cout << "\nVilken temperatur vill du söka efter med binärsökning? Ange värde: ";
     cin >> sokTemperatur;
 
+    // Ansopa funktionen binSok för att söka binärt i arrayen om temperaturen finns där
     sokRes = binSok(stader, 0, n, sokTemperatur);
 
+    // Visa resultatet av sökningen
     if (sokRes == -1) {
         cout << "\nKunde tyvärr inte hitta någon stad med temperaturen " << sokTemperatur << " grader. (binärsökning)\n";
     } else {
         cout << "\nStaden " << stader[sokRes].getNamn() << " har eftersökt temperatur på " << stader[sokRes].getTemp() << " grader. (binärsökning)\n";
     }
 
+    // Anropa funktionen hogstTemp för att ta reda på vilken stad som har högst temperatur i arrayen
+    // och skriv ut den på skärmen
     cout << "Staden med högst temperatur är " << stader[hogstTemp(stader, n)].getNamn() << " med " << 
         stader[hogstTemp(stader, n)].getTemp() << " grader.\n";
 
+    // Anropa funktionen lagstTemp för att ta reda på vilken stad som har lägst temperatur i arrayen
+    // och skriv ut den på skärmen
     cout << "Staden med lägst temperatur är " << stader[lagstTemp(stader, n)].getNamn() << " med " << 
         stader[lagstTemp(stader, n)].getTemp() << " grader.\n";
+
+    // Skriv ut en avslutande hälsning
+    cout << "Tack för att du använde väderstationen!\n";
 
     return 0;
 }
