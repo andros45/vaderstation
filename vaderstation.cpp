@@ -242,3 +242,4 @@ int main() {
 }
 
 // Testar en ny kommentar 1
+// Testar en ny kommentar 1
