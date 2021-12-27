@@ -246,3 +246,4 @@ int main() {
 // Testar en ny kommentar 2
 // Testar en ny kommentar 3
 // Testar en ny kommentar 4
+// Testar en ny kommentar 5
